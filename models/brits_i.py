@@ -11,10 +11,8 @@ import utils
 import argparse
 import data_loader
 
-import rits_i
+from .rits_i import Model as rits_i
 from sklearn import metrics
-
-from ipdb import set_trace
 
 SEQ_LEN = 36
 
@@ -30,8 +28,8 @@ class Model(nn.Module):
         self.build()
 
     def build(self):
-        self.rits_f = rits_i.Model(self.rnn_hid_size, self.impute_weight, self.label_weight)
-        self.rits_b = rits_i.Model(self.rnn_hid_size, self.impute_weight, self.label_weight)
+        self.rits_f = rits_i(self.rnn_hid_size, self.impute_weight, self.label_weight)
+        self.rits_b = rits_i(self.rnn_hid_size, self.impute_weight, self.label_weight)
 
     def forward(self, data):
         ret_f = self.rits_f(data, 'forward')

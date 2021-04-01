@@ -10,3 +10,8 @@ To run the model:
     * e.g., RITS_I: python main.py --model rits_i --epochs 1000 --batch_size 64 --impute_weight 0.3 --label_weight 1.0 --hid_size 108
     * for most cases, using impute_weight=0.3 and label_weight=1.0 lead to a good performance. Also adjust hid_size to control the number of parameters
 
+## Edit by Yizhu
+1. The code is modified so it works for python3 (3.8).
+2. The file input_process.py should be renamed to inpute_process.py
+3. The PhysioNet data is the data mentioned in https://physionet.org/content/challenge-2012/1.0.0/.
+More clearly, it should be the data in set-a and their coresponding label Outcomes-a.txt.

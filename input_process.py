@@ -4,7 +4,7 @@ import os
 import re
 import numpy as np
 import pandas as pd
-import ujson as json
+import pandas.io.json as json
 
 patient_ids = []
 
@@ -54,7 +54,7 @@ def parse_data(x):
     values = []
 
     for attr in attributes:
-        if x.has_key(attr):
+        if attr in x:
             values.append(x[attr])
         else:
             values.append(np.nan)
@@ -80,7 +80,7 @@ def parse_rec(values, masks, evals, eval_masks, dir_):
     deltas = parse_delta(masks, dir_)
 
     # only used in GRU-D
-    forwards = pd.DataFrame(values).fillna(method='ffill').fillna(0.0).as_matrix()
+    forwards = pd.DataFrame(values).fillna(method='ffill').fillna(0.0).values
 
     rec = {}
 
